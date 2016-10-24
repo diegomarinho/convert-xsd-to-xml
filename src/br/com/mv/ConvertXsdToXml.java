@@ -27,7 +27,7 @@ public class ConvertXsdToXml {
 
 		try {
 
-			String filename = "nfse.xsd";
+			String filename = "RpsServiceSemBase.xsd";
 			// instance.
 
 			doc = loadXsdDocument(filename);
@@ -35,7 +35,7 @@ public class ConvertXsdToXml {
 			// Find the docs root element and use it to find the targetNamespace
 			rootElem = doc.getDocumentElement();
 
-			if (rootElem != null && rootElem.getNodeName().equals("xsd:schema")) {
+			if (rootElem != null && rootElem.getNodeName().equals("xs:schema")) {
 				targetNamespace = rootElem.getAttribute("targetNamespace");
 			}
 
@@ -54,7 +54,7 @@ public class ConvertXsdToXml {
 			instance.generateOptionalElements = Boolean.TRUE;
 
 			// Build the sample xml doc Replace first param to XMLDoc with a file input stream to write to file
-			QName rootElement = new QName(targetNamespace, "ConsultarLoteRpsEnvio");
+			QName rootElement = new QName(targetNamespace, "ConsultarLoteRpsEnvioResponse");
 			XMLDocument sampleXml = new XMLDocument(new StreamResult(System.out), Boolean.TRUE, 4, null);
 			instance.generate(xsModel, rootElement, sampleXml);
 		} catch (TransformerConfigurationException e) {
